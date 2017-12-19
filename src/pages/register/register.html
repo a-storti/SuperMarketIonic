@@ -1,0 +1,55 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>register</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div id="wrapper" class="register-bkg">
+    <br>
+    <br>
+    <div align="center" class="log-reg">
+
+      <h2 class="title-reg">
+        Register
+      </h2>
+      <form class="example-container" (ngSubmit)="register()" #f="ngForm">
+        <ion-input required placeholder="Username" name="username" [(ngModel)]="user.username"></ion-input>
+
+
+        <ion-input required type="password" placeholder="Password" name="password"
+                   [(ngModel)]="user.password"></ion-input>
+
+
+        <ion-input placeholder="Telefono" name="tel" [(ngModel)]="user.tel"></ion-input>
+
+
+        <ion-input placeholder="Indirizzo" name="via" [(ngModel)]="user.via"></ion-input>
+
+
+        <ion-input placeholder="CAP" name="cap" [(ngModel)]="user.cap"></ion-input>
+
+
+        <ion-input placeholder="Città" name="citta" [(ngModel)]="user.citta"></ion-input>
+
+
+        <ion-input placeholder="Provincia" name="prov" [(ngModel)]="user.prov"></ion-input>
+
+
+        <button ion-button color="primary">Register</button>
+
+
+      </form>
+    </div>
+  </div>
+
+</ion-content>

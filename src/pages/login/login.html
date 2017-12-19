@@ -7,12 +7,30 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>login</ion-title>
+    <ion-title text-center="login">login</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <div class="container">
+    <h4 text-center>Login</h4>
+    <form action="#" id="login-form" (ngSubmit)="login()">
+      <div class="login-box">
+        <ion-input type="email" name="username" class="form-control" placeholder="User" required
+                   [(ngModel)]="user.username"></ion-input>
+        <hr/>
+        <ion-input type="password" name="password" class="form-control" placeholder="Password" required
+                   [(ngModel)]="user.password"></ion-input>
+      </div>
+      <br>
+      <div align="center">
+        <button ion-button class="mat-raised-button"> Login</button>
+      </div>
+      <p text-center>Don't have an account?
+        <button ion-button href="#" [navPush]="pushPage">Sign up</button>
+      </p>
+    </form>
+  </div>
 </ion-content>
