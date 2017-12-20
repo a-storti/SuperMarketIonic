@@ -4,33 +4,60 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
 
-  <ion-navbar>
-    <ion-title text-center="login">login</ion-title>
-  </ion-navbar>
+<ion-content class="background">
+  <ion-card>
+    <ion-card-header>
+      Login Form
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list no-line>
+        <ion-item>
+          <ion-input type="text" placeholder="Username" required
+                     [(ngModel)]="user.username"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password"  placeholder="Password" required
+                     [(ngModel)]="user.password"></ion-input>
+        </ion-item>
+        <a>Forgot your login detail? <b>Get help signing in</b></a>
+        <button ion-button block outline color="light" (tap)="login()">Log in</button>
+        <p>OR</p>
+        <button ion-button block color="facebook">
+          <ion-icon name="logo-facebook"></ion-icon> Login with facebook
+        </button>
+           </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <button class="bottom" ion-button clear full color="light" [navPush]="pushPage">Don't have an account? Sign up</button>
 
-</ion-header>
 
-
-<ion-content padding>
-  <div class="container">
-    <h4 text-center>Login</h4>
-    <form action="#" id="login-form" (ngSubmit)="login()">
-      <div class="login-box">
-        <ion-input type="email" name="username" class="form-control" placeholder="User" required
-                   [(ngModel)]="user.username"></ion-input>
-        <hr/>
-        <ion-input type="password" name="password" class="form-control" placeholder="Password" required
-                   [(ngModel)]="user.password"></ion-input>
-      </div>
-      <br>
-      <div align="center">
-        <button ion-button class="mat-raised-button"> Login</button>
-      </div>
-      <p text-center>Don't have an account?
-        <button ion-button href="#" [navPush]="pushPage">Sign up</button>
-      </p>
-    </form>
-  </div>
 </ion-content>
+<!--<div class="container"> <button class="bottom" ion-button clear full color="light">Don't have an account? Sign up</button>
+  <ion-list no-lines class="inputs">
+    <ion-item>
+    <ion-input type="email" name="username" class="inUsermane" placeholder="Username" required
+               [(ngModel)]="user.username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" name="password" class="inPassword" placeholder="Password" required
+                         [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button class="signIn" > Login</button>
+    </ion-item>
+  </ion-list>
+  <h4 text-center>Login</h4>
+  <form action="#" id="login-form" (ngSubmit)="">
+    <div class="login-box">
+
+      <hr/>
+
+    </div>
+    <br>
+    <div align="center">
+
+    </div>
+
+  </form>
+</div>-->
