@@ -1,5 +1,5 @@
 import {Component,} from '@angular/core';
-import { IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, MenuController, NavController, NavParams} from 'ionic-angular';
 import {LoginProvider} from "../../providers/login/login";
 import {SharedProvider} from "../../providers/shared/shared";
 
@@ -18,8 +18,9 @@ import {SharedProvider} from "../../providers/shared/shared";
 export class LoginPage {
   user = {username: '', password: '', profileType: 'ROLE_ADMIN'};
   pushPage: any;
+  activeMenu: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private loginService:LoginProvider,
-  private sharedService:SharedProvider,) {
+  private sharedService:SharedProvider, private menu: MenuController) {
     this.pushPage = 'RegisterPage';
   }
 

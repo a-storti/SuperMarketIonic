@@ -1,0 +1,30 @@
+<!--
+  Generated template for the CarrelloPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>carrello</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <tr *ngFor="let prodotto of listaCarrello">
+    <ion-list>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="{{prodotto.img}}">
+        </ion-thumbnail>
+        <h2>{{prodotto.nome}}</h2>
+        <p>{{prodotto.marca}} • {{prodotto.prezzoUnitario}} X {{prodotto.quantitaDaAcquistare}}</p>
+        <button (click)="eliminaCarello(prodotto)">   <ion-icon name="trash"></ion-icon>     </button>
+      </ion-item>
+    </ion-list>
+  </tr>
+
+</ion-content>
