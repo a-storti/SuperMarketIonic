@@ -16,17 +16,19 @@ const httpOptions = {
 
 @Injectable()
 export class ListProductProvider {
+
   carrello: Prodotto[] = [];
+
   constructor(public http: HttpClient) {
     console.log('Hello ListProductProvider Provider');
   }
 
   getall(): Observable<Prodotto[]> {
-    return this.http.get<Prodotto[]>(BACKEND_URL + '/prodotto/getlist', httpOptions);
+    return this.http.get<Prodotto[]>(BACKEND_URL + '/prodotto/getlist',httpOptions);
   }
 
   acquisti(prodotto, carta) {
-    return this.http.post(BACKEND_URL + '/acquista/' + carta, prodotto, httpOptions);
+    return this.http.post(BACKEND_URL + '/prodotto/acquista/' + carta, prodotto, httpOptions);
   }
 
   findProdottoById(prodottoId): Observable<Prodotto> {
