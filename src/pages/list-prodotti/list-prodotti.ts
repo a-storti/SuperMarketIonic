@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, Loading, LoadingController, NavController, NavParams, Platform} from 'ionic-angular';
 import {Prodotto} from "../../model/prodotto";
 import {ListProductProvider} from "../../providers/list-product/list-product";
 
@@ -16,6 +16,8 @@ import {ListProductProvider} from "../../providers/list-product/list-product";
   templateUrl: 'list-prodotti.html',
 })
 export class ListProdottiPage {
+
+  loading: Loading;
   listProdotti: Array<Prodotto> = [];
   carrello: Array<Prodotto> = [];
   prodotto: Prodotto = new Prodotto();
@@ -27,17 +29,21 @@ export class ListProdottiPage {
   cancelText = 'Annulla';
   confirmClicked: boolean = false;
   cancelClicked: boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private prodottiService:ListProductProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private prodottiService:ListProductProvider,
+              public platform: Platform,  public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListProdottiPage');
+    this.showLoading();
+    this.getall();
   }
   getall() {
     this.prodottiService.getall().subscribe(data => {
       this.listProdotti = data;
-      console.log('getall');
+      console.log("getall "+ this.listProdotti);
       this.offerteDelGiorno();
+      this.loading.dismiss();
     });
   }
 
@@ -95,5 +101,20 @@ export class ListProdottiPage {
       }
     }
 
+  }
+
+
+  doRefresh(refresher) {
+    setTimeout(() => {
+      this.getall();
+      refresher.complete();
+    }, 2000);
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: "Caricamento..."
+    });
+    this.loading.present();
   }
 }
