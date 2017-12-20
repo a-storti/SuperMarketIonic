@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component,} from '@angular/core';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import {LoginProvider} from "../../providers/login/login";
 import {SharedProvider} from "../../providers/shared/shared";
 
@@ -37,4 +37,5 @@ export class LoginPage {
       console.log(err);
     });
   }
+
 }

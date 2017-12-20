@@ -13,7 +13,42 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="background">
+  <ion-card>
+    <ion-card-header>
+      Register
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list no-line>
+        <ion-item>
+          <ion-input required placeholder="Username" name="username" [(ngModel)]="user.username"></ion-input>
+        </ion-item>
+      <ion-item>
+        <ion-input required type="password" placeholder="Password" name="password"
+                   [(ngModel)]="user.password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Telefono" name="tel" [(ngModel)]="user.tel"></ion-input>
+      </ion-item>
+        <ion-item>
+          <ion-input placeholder="Indirizzo" name="via" [(ngModel)]="user.via"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="CAP" name="cap" [(ngModel)]="user.cap"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Città" name="citta" [(ngModel)]="user.citta"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Provincia" name="prov" [(ngModel)]="user.prov"></ion-input>
+        </ion-item>
+        <button ion-button block outline color="light" (tap)="register()">Login</button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<!--
+
   <div id="wrapper" class="register-bkg">
     <br>
     <br>
@@ -23,27 +58,6 @@
         Register
       </h2>
       <form class="example-container" (ngSubmit)="register()" #f="ngForm">
-        <ion-input required placeholder="Username" name="username" [(ngModel)]="user.username"></ion-input>
-
-
-        <ion-input required type="password" placeholder="Password" name="password"
-                   [(ngModel)]="user.password"></ion-input>
-
-
-        <ion-input placeholder="Telefono" name="tel" [(ngModel)]="user.tel"></ion-input>
-
-
-        <ion-input placeholder="Indirizzo" name="via" [(ngModel)]="user.via"></ion-input>
-
-
-        <ion-input placeholder="CAP" name="cap" [(ngModel)]="user.cap"></ion-input>
-
-
-        <ion-input placeholder="Città" name="citta" [(ngModel)]="user.citta"></ion-input>
-
-
-        <ion-input placeholder="Provincia" name="prov" [(ngModel)]="user.prov"></ion-input>
-
 
         <button ion-button color="primary">Register</button>
 
@@ -53,3 +67,4 @@
   </div>
 
 </ion-content>
+-->
