@@ -16,7 +16,7 @@ import {ListProductProvider} from "../../providers/list-product/list-product";
   templateUrl: 'list-prodotti.html',
 })
 export class ListProdottiPage {
-
+  pushPage: any;
   loading: Loading;
   listProdotti: Array<Prodotto> = [];
   carrello: Array<Prodotto> = [];
@@ -31,6 +31,7 @@ export class ListProdottiPage {
   cancelClicked: boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, private prodottiService:ListProductProvider,
               public platform: Platform,  public loadingCtrl: LoadingController) {
+    this.pushPage = 'CarrelloPage'
   }
 
   ionViewDidLoad() {
