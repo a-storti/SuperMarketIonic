@@ -7,12 +7,14 @@
 <ion-header>
 
 
-    <ion-title>Prodotti</ion-title>
+  <ion-title>Prodotti
 
+    <button style="background: transparent" [navPush]="">
+      <ion-icon style="color: black" name="walk"></ion-icon>
+    </button>
 
+  </ion-title>
 </ion-header>
-
-
 
 <ion-content class="listprodotto">
   <ion-list>
@@ -21,11 +23,12 @@
         <img class="sale" src="assets/imgs/sale.png" *ngIf="prodotto.offerta == 1"><img src="{{prodotto.img}}">
       </ion-thumbnail>
       <div>
-      <h2 class="prodotto">{{prodotto.nome}}</h2>
-      <p>€ <span>{{prodotto.prezzoUnitario}}</span></p>
+        <h2 class="prodotto">{{prodotto.nome}}</h2>
+
+        <p>€ <span>{{prodotto.prezzoUnitario}}</span></p>
       </div>
       <p>
-        <button ion-button style="align-items: left" (click)="aggiungi(prodotto)">
+        <button ion-button style="align-items: left" (click)="presentAlert(prodotto)">
           <ion-icon name="add"></ion-icon>
         </button>
       </p>
@@ -34,7 +37,9 @@
 
 
   <ion-fab right bottom>
-    <button ion-fab color="primary" [navPush]="pushPage"><ion-icon name="cart"></ion-icon></button>
+    <button ion-fab color="primary" [navPush]="pushPage">
+      <ion-icon name="cart"></ion-icon>
+    </button>
   </ion-fab>
 
 </ion-content>

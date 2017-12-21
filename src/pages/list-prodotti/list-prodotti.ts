@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
-import {IonicPage, Loading, LoadingController, NavController, NavParams, Platform} from 'ionic-angular';
+import {
+  AlertController,
+  IonicPage, Loading, LoadingController, NavController, NavParams,
+  Platform
+} from 'ionic-angular';
 import {Prodotto} from "../../model/prodotto";
 import {ListProductProvider} from "../../providers/list-product/list-product";
+import {MyApp} from "../../app/app.component";
 
 /**
  * Generated class for the ListProdottiPage page.
@@ -24,9 +29,10 @@ export class ListProdottiPage {
   listOfferta: Array<Prodotto> = [];
   listaStorico: Array<Prodotto> = [];
   pushPage: any;
+  appComponent: MyApp;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private prodottiService:ListProductProvider,
-              public platform: Platform,  public loadingCtrl: LoadingController) {
+              public platform: Platform,  public loadingCtrl: LoadingController, private alertCtrl: AlertController) {
     this.pushPage = 'CarrelloPage'
   }
 
@@ -111,5 +117,34 @@ export class ListProdottiPage {
       content: "Caricamento..."
     });
     this.loading.present();
+  }
+
+  presentAlert(prodotto) {
+    let alert = this.alertCtrl.create({
+      title: "Conferma l' acquisto",
+      subTitle: this.prodotto.nome,
+      buttons: [
+        {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+        },
+        {
+          text: 'Buy',
+          handler: data=>{
+            this.aggiungi(prodotto);
+            console.log("carrello");
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  loguot(){
+    this.appComponent.logout();
+
   }
 }
