@@ -31,6 +31,7 @@ export class CarrelloPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CarrelloPage');
+    this.getCarrello();
   }
   getCarrello() {
     this.listaCarrello = JSON.parse(localStorage.getItem("carrello"));

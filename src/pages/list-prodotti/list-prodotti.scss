@@ -22,13 +22,14 @@ page-list-prodotti {
   }
   .item-md ion-thumbnail ion-img, .item-md ion-thumbnail img {
     width: auto;
-    height: 70px;
+    height: 65px;
     margin: auto;
   }
   .prodotto{
     margin: 2px 0;
     font-size: 1.6rem;
     font-weight: bolder;
+    overflow: scroll;
   }
 
   .item-md {
