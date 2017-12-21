@@ -27,8 +27,9 @@ export class ListProductProvider {
     return this.http.get<Prodotto[]>(BACKEND_URL + '/prodotto/getlist',httpOptions);
   }
 
-  acquisti(prodotto, carta) {
-    return this.http.post(BACKEND_URL + '/prodotto/acquista/' + carta, prodotto, httpOptions);
+  acquisti(prodotto, idCarta) {
+    this.carrello = prodotto;
+    return this.http.post(BACKEND_URL + '/prodotto/acquista/' + idCarta, this.carrello, httpOptions);
   }
 
   findProdottoById(prodottoId): Observable<Prodotto> {

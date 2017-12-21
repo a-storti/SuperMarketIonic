@@ -13,6 +13,7 @@ import { LoginProvider } from '../providers/login/login';
 import { ListProductProvider } from '../providers/list-product/list-product';
 import { SharedProvider } from '../providers/shared/shared';
 import {HttpClientModule, } from "@angular/common/http";
+import {GooglePlus} from "@ionic-native/google-plus";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {HttpClientModule, } from "@angular/common/http";
     InterceptorProvider,
     LoginProvider,
     ListProductProvider,
-    SharedProvider
+    SharedProvider,
+    GooglePlus,
   ]
 })
 export class AppModule {}

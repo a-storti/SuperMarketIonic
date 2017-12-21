@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>carrello</ion-title>
+    <ion-title>Carrello</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -22,9 +22,11 @@
         </ion-thumbnail>
         <h2>{{prodotto.nome}}</h2>
         <p>{{prodotto.marca}} • {{prodotto.prezzoUnitario}} X {{prodotto.quantitaDaAcquistare}}</p>
-        <button (click)="eliminaCarello(prodotto)">   <ion-icon name="trash"></ion-icon>     </button>
+        <button (tap)="eliminaCarello(prodotto)">   <ion-icon name="trash"></ion-icon>     </button>
       </ion-item>
     </ion-list>
   </tr>
+
+  <button ion-button color="secondary" (tap)="showRadio()">Paga</button>
 
 </ion-content>

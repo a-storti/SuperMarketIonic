@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {CartaCredito} from "../../model/cartaCredito";
 import {Prodotto} from "../../model/prodotto";
 import {CartaCreditoProvider} from "../../providers/carta-credito/carta-credito";
 import {LoginProvider} from "../../providers/login/login";
 import {ListProductProvider} from "../../providers/list-product/list-product";
+import {ListProdottiPage} from "../list-prodotti/list-prodotti";
 
 /**
  * Generated class for the CarrelloPage page.
@@ -19,6 +20,9 @@ import {ListProductProvider} from "../../providers/list-product/list-product";
   templateUrl: 'carrello.html',
 })
 export class CarrelloPage {
+
+  testRadioOpen: boolean;
+  testRadioResult;
   prodotto : Prodotto = new Prodotto;
   listaCarrello: Array<Prodotto> = [];
   carte: CartaCredito[] = [];
@@ -26,12 +30,14 @@ export class CarrelloPage {
   totale: number = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private cartaService : CartaCreditoProvider,
-              private utente: LoginProvider,  private prodottiService: ListProductProvider,) {
+              private utente: LoginProvider,  private prodottiService: ListProductProvider,
+              public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CarrelloPage');
     this.getCarrello();
+    this.listaCarte();
   }
   getCarrello() {
     this.listaCarrello = JSON.parse(localStorage.getItem("carrello"));
@@ -77,6 +83,7 @@ export class CarrelloPage {
   acquistaProdotti(idCarta) {
     this.prodottiService.acquisti(this.listaCarrello, idCarta);
     this.svuotaCarrello();
+    this.navCtrl.push(ListProdottiPage);
   }
 
   listaCarte() {
@@ -92,4 +99,70 @@ export class CarrelloPage {
   saveCarta(carta){
     this.cartaService.saveOrUpdateCard(carta);
   }
+
+  showRadio() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Scegli la carta');
+
+    for (let c of this.carte) {
+      console.log(c);
+      alert.addInput({
+        type: 'radio',
+        label: "Numero Carta: "+c.numero,
+        value: c.id.toString(),
+        checked: true
+      });
+
+    }
+
+
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        console.log(parseInt(data));
+        let idCarta = data;
+        this.acquistaProdotti(idCarta);
+        this.testRadioOpen = false;
+        this.testRadioResult = data;
+      }
+    });
+    alert.addButton('Annulla');
+    alert.addButton({
+      text: 'Nuova carta',
+      handler: value => {
+        console.log(value);
+        this.doPrompt();
+      }
+    });
+    alert.present();
+  }
+
+  doPrompt() {
+    let prompt = this.alertCtrl.create({
+      title: 'Inserisci nuova carta',
+      message: "Enter a name for this new album you're so keen on adding",
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Title'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
 }
