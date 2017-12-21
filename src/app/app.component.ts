@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import {Nav, NavController, Platform} from 'ionic-angular';
+import {Nav, Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/login/login";
@@ -20,7 +20,7 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
-              public loginService : LoginProvider, public navCtrl : NavController) {
+              public loginService : LoginProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -44,7 +44,7 @@ export class MyApp {
       console.log('logged out.' + data);
       localStorage.removeItem('user');
       localStorage.removeItem('token');
-      this.navCtrl.setRoot('LoginPage');
+      this.nav.setRoot('LoginPage');
     }, (err) => {
       console.log('logger out. ');
       localStorage.removeItem('user');
