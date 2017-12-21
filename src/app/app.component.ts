@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import {Nav, NavController, Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/login/login";
 import {ListProdottiPage} from "../pages/list-prodotti/list-prodotti";
+import {LoginProvider} from "../providers/login/login";
 
 
 @Component({
@@ -14,9 +15,12 @@ export class MyApp {
 
   rootPage: any = 'LoginPage';
 
+  logged = false;
+
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+              public loginService : LoginProvider, public navCtrl : NavController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -30,16 +34,21 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
 
-  //openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
- //   this.nav.setRoot(page.component);
- // }
+  logout() {
+    this.loginService.logout().subscribe(data => {
+      console.log('logged out.' + data);
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      this.navCtrl.setRoot('LoginPage');
+    }, (err) => {
+      console.log('logger out. ');
+      localStorage.removeItem('user');
+      this.logged = false;
+    });
+  }
 }
